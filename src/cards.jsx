@@ -33,3 +33,13 @@ function cardCreatorShuffle() {
 }
 
 export default cardCreatorShuffle;
+
+// format for game mode, that prints cards accordingly
+// let differentCards;
+// if (difficulty === 'easy') {
+//   differentCards = 6;
+// } else if (difficulty === 'medium') {
+//   differentCards = 10;
+// } else if (difficulty === 'witcher') {
+//   differentCards = 16;
+// }
