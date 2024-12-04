@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './index.css';
-import cards from './cards';
 import testCard from './assets/ConvertedCards/10030000 - Milaen.webp';
+import cardCreatorShuffle from './cards';
 
 function App() {
+  const [shuffledCards, setShuffledCards] = useState([]);
   const cardImage = testCard;
   const cardBackground = '/src/assets/card_background.webp';
   const [count, setCount] = useState(0);
   const [isHidden, setIsHidden] = useState(true);
+
+  useEffect(() => {
+    const pulledCards = cardCreatorShuffle();
+    setShuffledCards(pulledCards);
+    console.log('shuffle cards pulled', pulledCards);
+  }, []);
 
   function handleCardClick() {
     setIsHidden((previous) => !previous);
@@ -40,6 +47,7 @@ function App() {
               </div>
             </div>
           </div>
+          {/* ////////////////// */}
         </div>
       </div>
     </>
