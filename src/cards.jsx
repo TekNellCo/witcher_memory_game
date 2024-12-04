@@ -20,7 +20,7 @@ function shuffleCards(shuffleME) {
 const arrayA = []; //array to be filled with initial shuffle
 
 ////pushes five cards into arrayA
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 6; i++) {
   arrayA.push(cards[indices[i]]);
 }
 
