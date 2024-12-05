@@ -42,13 +42,22 @@ body {
 }
 .gameContainer {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+
   border-radius: 14px;
   background-color: rgba(57, 57, 57, 0.299);
   place-items: center;
   aspect-ratio: 1;
   width: 40%;
   transform: translate(-20%);
+  &.firstRound {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &.secondRound {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  &.thirdRound {
+    grid-template-columns: repeat(8, 1fr);
+  }
 }
 .cardContainer {
   width: 84%;

@@ -2,7 +2,7 @@ import testCard from './assets/ConvertedCards/10030000 - Milaen.webp';
 import { useState, useEffect } from 'react';
 import cardCreatorShuffle from './cards';
 
-function GameBoard() {
+function GameBoard({ addStrike }) {
   const cardBackground = '/src/assets/card_background.webp'; ///default card background
   const [shuffledCards, setShuffledCards] = useState([]); ///stored shuffled cards
   const [isHidden, setIsHidden] = useState([]); ///tracks if cards are hidden or not
@@ -14,53 +14,55 @@ function GameBoard() {
     const pulledCards = cardCreatorShuffle();
     setShuffledCards(pulledCards);
     setIsHidden(new Array(pulledCards.length).fill(true)); /////puts all the cards in a hidden array
-    console.log('shuffle cards pulled', pulledCards);
   }, []);
 
-  function handleCardClick(card, index) {
-    if (matchedCards.includes(card)) return;
-
-    setFlippedCards((currentFlipped) => {
-      const updateFlipped = [...currentFlipped, card];
-
-      if (updateFlipped.length === 2) {
-        const [firstCard, secondCard] = updateFlipped;
-        if (firstCard.name === secondCard.name) {
-          setMatchedCards((currenMatch) => [...currenMatch, firstCard, secondCard]);
-        } else {
-          setTimeout(() => {
-            setIsHidden((hiddenValue) =>
-              hiddenValue.map((hidden, i) => (shuffledCards[i] === firstCard || shuffledCards[i] === secondCard ? true : hidden))
-            );
-          }, 800);
-        }
-        return [];
+  useEffect(() => {
+    if (isFlipped.length === 2) {
+      const [firstCard, secondCard] = isFlipped; ///if 2 cards in flipped array, name them
+      if (firstCard.name !== secondCard.name) {
+        ////compares both cards
+        addStrike((prevStrike) => prevStrike + 1); ///adds a strike if they don't match + pushes it to App.js
+        setTimeout(() => {
+          ////adds a slight delay before turning cards back over
+          setIsHidden((hiddenValue) =>
+            hiddenValue.map((hidden, i) => (shuffledCards[i] === firstCard || shuffledCards[i] === secondCard ? true : hidden))
+          );
+        }, 800);
+      } else {
+        ///cards match so add them to the array
+        setMatchedCards((currentMatched) => [...currentMatched, firstCard, secondCard]);
       }
-      return updateFlipped;
+      setFlippedCards([]); // Reset flipped cards after checking
+    }
+  }, [isFlipped, addStrike, shuffledCards]); // Triggered when isFlipped changes
+
+  function handleCardClick(card, index) {
+    if (matchedCards.includes(card)) return; /////if its already in the matched cards array do nothing
+    // Flip the card
+    setIsHidden((prev) => prev.map((hidden, i) => (i === index ? !hidden : hidden)));
+    setFlippedCards((prevFlipped) => {
+      const updatedFlipped = [...prevFlipped, card];
+      if (updatedFlipped.length === 2) {
+        return updatedFlipped; // Return the two flipped cards
+      }
+      return updatedFlipped; // Otherwise, keep adding the flipped cards
     });
-
-    // console.log('1st card', firstCard, '2nd card', secondCard);
-
-    // console.log('index log', index, 'card log', card.name);
-    setIsHidden((hiddenValue) => hiddenValue.map((hidden, i) => (i === index ? !hidden : hidden)));
   }
 
   return (
     <>
-      <div className="gameContainer">
-        {shuffledCards.map((card, index) => (
-          <div key={index} className="cardContainer" onClick={() => handleCardClick(card, index)}>
-            <div className={`card ${isHidden[index] ? '' : 'flipped'}`}>
-              <div className="front">
-                <img src={cardBackground} alt="" />
-              </div>
-              <div className="back">
-                <img src={card.src} alt="" />
-              </div>
+      {shuffledCards.map((card, index) => (
+        <div key={index} className="cardContainer" onClick={() => handleCardClick(card, index)}>
+          <div className={`card ${isHidden[index] ? '' : 'flipped'}`}>
+            <div className="front">
+              <img src={cardBackground} alt="" />
+            </div>
+            <div className="back">
+              <img src={card.src} alt="" />
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </>
   );
 }
