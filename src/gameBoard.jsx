@@ -2,12 +2,14 @@ import testCard from './assets/ConvertedCards/10030000 - Milaen.webp';
 import { useState, useEffect } from 'react';
 import cardCreatorShuffle from './cards';
 
-function GameBoard({ addStrike }) {
+function GameBoard({ addStrike, win }) {
   const cardBackground = '/src/assets/card_background.webp'; ///default card background
   const [shuffledCards, setShuffledCards] = useState([]); ///stored shuffled cards
   const [isHidden, setIsHidden] = useState([]); ///tracks if cards are hidden or not
   const [matchedCards, setMatchedCards] = useState([]);
   const [isFlipped, setFlippedCards] = useState([]);
+
+  // console.log(matchedCards.length === shuffledCards.length, 'all card match value', allCardsMatch);
 
   /////pulls shuffled cards from cards.jsx
   useEffect(() => {
@@ -48,6 +50,14 @@ function GameBoard({ addStrike }) {
       return updatedFlipped; // Otherwise, keep adding the flipped cards
     });
   }
+  ///makes sure the array isn't empty and if they match in length push winning condition
+  const allCardsMatch = shuffledCards.length > 0 && shuffledCards.length === matchedCards.length;
+  useEffect(() => {
+    if (allCardsMatch === true) {
+      console.log('its TRUE THEY MATCH');
+      win(true);
+    }
+  }, [allCardsMatch]);
 
   return (
     <>
