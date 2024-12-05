@@ -53,13 +53,14 @@ body {
     grid-template-columns: repeat(4, 1fr);
   }
   &.secondRound {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
   &.thirdRound {
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 .cardContainer {
+  overflow: hidden;
   width: 84%;
   aspect-ratio: 0.7;
   position: relative;

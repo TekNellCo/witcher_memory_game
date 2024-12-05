@@ -1,5 +1,5 @@
 ///////////imports images dynamically
-function cardCreatorShuffle() {
+function cardCreatorShuffle(cardsToShuffle) {
   const images = import.meta.glob('./assets/ConvertedCards/*.webp', { eager: true });
 
   const cards = Object.keys(images).map((path) => ({
@@ -21,7 +21,7 @@ function cardCreatorShuffle() {
   const arrayA = []; //array to be filled with initial shuffle
 
   ////pushes five cards into arrayA
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < cardsToShuffle; i++) {
     arrayA.push(cards[indices[i]]);
   }
 

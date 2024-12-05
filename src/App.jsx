@@ -14,13 +14,21 @@ function App() {
     if (won) {
       if (round === 'firstRound') {
         setState('winRound');
+        /* placeholders */
+        setRound('secondRound');
+        console.log(round);
       } else if (round === 'secondRound') {
         setState('winRound');
+        // placeholder
+        console.log(round);
       } else if (round === 'thirdRound') {
+        // placeholder
+        console.log(round);
+
         setState('win');
       }
     }
-  }, [won]);
+  }, [won, round]);
 
   // useEffect(() => {
   //   if (round === 'firstRound' && strike === 5) {
@@ -37,7 +45,12 @@ function App() {
       <video className="background" autoPlay muted loop playsInline typeof="video/webm" src="src\assets\Background_desktop.webm"></video>
       <div className="pageContainer">
         <div className={`gameContainer ${round}`}>
-          <GameBoard addStrike={setStrike} win={setWin} />
+          {round === 'firstRound' && <GameBoard addStrike={setStrike} win={setWin} round={round} />}
+
+          {/* placeholders */}
+          {round === 'secondRound' && <button onClick={() => setRound('thirdRound')}>Click here</button>}
+          {round === 'thirdRound' && <GameBoard addStrike={setStrike} win={setWin} round={round} />}
+          {/* placeholders */}
         </div>
       </div>
     </>

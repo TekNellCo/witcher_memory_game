@@ -2,7 +2,25 @@ import testCard from './assets/ConvertedCards/10030000 - Milaen.webp';
 import { useState, useEffect } from 'react';
 import cardCreatorShuffle from './cards';
 
-function GameBoard({ addStrike, win }) {
+function GameBoard({ addStrike, win, round }) {
+  // let cards;
+  // if (round === 'firstRound') {
+  //   cards = 6;
+  // } else if (round === 'secondRound') {
+  //   cards = 10;
+  // } else if (round === 'thirdRound') {
+  //   cards = 12;
+  // }
+
+  let cards;
+  if (round === 'firstRound') {
+    cards = 6;
+  } else if (round === 'secondRound') {
+    cards = 2;
+  } else if (round === 'thirdRound') {
+    cards = 12;
+  }
+
   const cardBackground = '/src/assets/card_background.webp'; ///default card background
   const [shuffledCards, setShuffledCards] = useState([]); ///stored shuffled cards
   const [isHidden, setIsHidden] = useState([]); ///tracks if cards are hidden or not
@@ -13,10 +31,13 @@ function GameBoard({ addStrike, win }) {
 
   /////pulls shuffled cards from cards.jsx
   useEffect(() => {
-    const pulledCards = cardCreatorShuffle();
-    setShuffledCards(pulledCards);
+    setMatchedCards([]);
+    setFlippedCards([]);
+    const pulledCards = cardCreatorShuffle(cards);
     setIsHidden(new Array(pulledCards.length).fill(true)); /////puts all the cards in a hidden array
-  }, []);
+
+    setShuffledCards(pulledCards);
+  }, [round, cards]);
 
   useEffect(() => {
     if (isFlipped.length === 2) {
@@ -54,7 +75,6 @@ function GameBoard({ addStrike, win }) {
   const allCardsMatch = shuffledCards.length > 0 && shuffledCards.length === matchedCards.length;
   useEffect(() => {
     if (allCardsMatch === true) {
-      console.log('its TRUE THEY MATCH');
       win(true);
     }
   }, [allCardsMatch]);
