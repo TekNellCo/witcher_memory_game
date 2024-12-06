@@ -14,11 +14,11 @@ function GameBoard({ addStrike, win, state }) {
 
   let cards;
   if (state === 'firstRound') {
-    cards = 2;
+    cards = 6;
   } else if (state === 'secondRound') {
-    cards = 2;
+    cards = 10;
   } else if (state === 'thirdRound') {
-    cards = 2;
+    cards = 12;
   }
 
   const cardBackground = '/src/assets/card_background.webp'; ///default card background
@@ -26,8 +26,6 @@ function GameBoard({ addStrike, win, state }) {
   const [isHidden, setIsHidden] = useState([]); ///tracks if cards are hidden or not
   const [matchedCards, setMatchedCards] = useState([]);
   const [isFlipped, setFlippedCards] = useState([]);
-
-  // console.log(matchedCards.length === shuffledCards.length, 'all card match value', allCardsMatch);
 
   /////pulls shuffled cards from cards.jsx
   useEffect(() => {
@@ -42,8 +40,8 @@ function GameBoard({ addStrike, win, state }) {
   useEffect(() => {
     if (isFlipped.length === 2) {
       const [firstCard, secondCard] = isFlipped; ///if 2 cards in flipped array, name them
+      ////compares both cards
       if (firstCard.name !== secondCard.name) {
-        ////compares both cards
         addStrike((prevStrike) => prevStrike + 1); ///adds a strike if they don't match + pushes it to App.js
         setTimeout(() => {
           ////adds a slight delay before turning cards back over

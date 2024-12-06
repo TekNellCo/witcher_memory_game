@@ -10,7 +10,7 @@ function cardCreatorShuffle(cardsToShuffle) {
   const indices = [...Array(cards.length).keys()]; ////creates an array from cards array
   shuffleCards(indices); ///adds it to shuffler
 
-  /////Fisher-Yates Shuffle's the whole array
+  /////Fisher-Yates shuffles the whole array
   function shuffleCards(shuffleME) {
     for (let i = shuffleME.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -33,13 +33,3 @@ function cardCreatorShuffle(cardsToShuffle) {
 }
 
 export default cardCreatorShuffle;
-
-// format for game mode, that prints cards accordingly
-// let differentCards;
-// if (difficulty === 'easy') {
-//   differentCards = 6;
-// } else if (difficulty === 'medium') {
-//   differentCards = 10;
-// } else if (difficulty === 'witcher') {
-//   differentCards = 16;
-// }
