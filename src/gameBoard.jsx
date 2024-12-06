@@ -2,7 +2,7 @@ import testCard from './assets/ConvertedCards/10030000 - Milaen.webp';
 import { useState, useEffect } from 'react';
 import cardCreatorShuffle from './cards';
 
-function GameBoard({ addStrike, win, round }) {
+function GameBoard({ addStrike, win, state }) {
   // let cards;
   // if (round === 'firstRound') {
   //   cards = 6;
@@ -13,12 +13,12 @@ function GameBoard({ addStrike, win, round }) {
   // }
 
   let cards;
-  if (round === 'firstRound') {
-    cards = 6;
-  } else if (round === 'secondRound') {
+  if (state === 'firstRound') {
     cards = 2;
-  } else if (round === 'thirdRound') {
-    cards = 12;
+  } else if (state === 'secondRound') {
+    cards = 2;
+  } else if (state === 'thirdRound') {
+    cards = 2;
   }
 
   const cardBackground = '/src/assets/card_background.webp'; ///default card background
@@ -37,7 +37,7 @@ function GameBoard({ addStrike, win, round }) {
     setIsHidden(new Array(pulledCards.length).fill(true)); /////puts all the cards in a hidden array
 
     setShuffledCards(pulledCards);
-  }, [round, cards]);
+  }, [state, cards]);
 
   useEffect(() => {
     if (isFlipped.length === 2) {
@@ -76,6 +76,7 @@ function GameBoard({ addStrike, win, round }) {
   useEffect(() => {
     if (allCardsMatch === true) {
       win(true);
+      setTimeout(() => win(false), 20);
     }
   }, [allCardsMatch]);
 
