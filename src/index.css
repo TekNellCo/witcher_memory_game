@@ -226,3 +226,33 @@ body {
 .startButton.active {
   opacity: 1;
 }
+
+.strikeChances {
+  opacity: 0;
+  visibility: hidden;
+  border: 2px double white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.235);
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  /* transform: translate(-1250%, -550%); */
+  transform: translate(-350%, -50%);
+  transition: opacity 2s ease-in;
+}
+
+.strikeChances.hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+.strikeChances.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.strikes {
+  font-size: 3rem;
+}

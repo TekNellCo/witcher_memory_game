@@ -1,51 +1,46 @@
 import { useEffect, useState } from 'react';
 import './index.css';
-
+import StrikeCounter from './strikeCounter';
 import GameBoard from './gameBoard';
 import WinRound from './winRound';
 import LoseGame from './loseGame';
 import LoadingScreen from './loading';
 
 function App() {
-  const [state, setState] = useState('loading');
+  const [state, setState] = useState('loadingDone');
   const [round, setRound] = useState('firstRound');
   const [strike, setStrike] = useState(0);
   const [won, setWin] = useState(false);
 
-  ////checks if loading is done
-  // useEffect(() => {
-  //   function unhideStartBtn() {
-  //     setState('loadingDone');
-  //   }
-  //   window.addEventListener('load', unhideStartBtn);
-
-  //   return () => window.removeEventListener('load', unhideStartBtn);
-  // }, []);
-
+  ////checks if loading is done then triggers function to unhide start button
   useEffect(() => {
-    // Set the state after a 2-second delay
-    const timeoutId = setTimeout(() => {
+    function unhideStartBtn() {
       setState('loadingDone');
-    }, 2000);
+    }
+    window.addEventListener('load', unhideStartBtn);
 
-    // Cleanup: clear the timeout if the component unmounts or if the effect is cleaned up
-    return () => clearTimeout(timeoutId);
+    return () => window.removeEventListener('load', unhideStartBtn);
   }, []);
+
+  //////used for testing
+  // useEffect(() => {
+  //   const timeoutId = setTimeout(() => {
+  //     setState('loadingDone');
+  //   }, 2000);
+
+  //   return () => clearTimeout(timeoutId);
+  // }, []);
 
   ////sets state and rounds on midRound page///setRound is only for rounds, setState switches between rounds and other states
   function setRoundButton() {
     if (round === 'firstRound') {
-      console.log(round);
       setState('secondRound');
       setRound('secondRound');
-      console.log(round);
     } else if (round === 'secondRound') {
       console.log(round);
       setState('thirdRound');
       setRound('thirdRound');
-      console.log(round);
     }
-    console.log(round);
   }
 
   /////checks winning conditions and switches to mid-round page
@@ -83,7 +78,8 @@ function App() {
     setWin(false);
   }
 
-  function gameContainerVisual() {
+  /////function to hide or unhide returning strings 'hidden' or 'visible' for className
+  function loadingVisual() {
     return state === 'loading' || state === 'loadingDone' ? 'hidden' : 'visible';
   }
 
@@ -92,7 +88,8 @@ function App() {
       <video className="background" autoPlay muted loop playsInline typeof="video/webm" src="src\assets\Background_desktop.webm"></video>
       <div className="pageContainer">
         {(state === 'loading' || state === 'loadingDone') && <LoadingScreen setState={setState} state={state} />}
-        <div className={`gameContainer  ${gameContainerVisual()} ${state}`}>
+        {state == 'loading' || state == 'loadingDone' ? '' : <StrikeCounter state={state} strike={strike} round={round} />}
+        <div className={`gameContainer  ${loadingVisual()} ${state}`}>
           {state === 'firstRound' && <GameBoard addStrike={setStrike} win={setWin} state={state} />}
           {state === 'secondRound' && <GameBoard addStrike={setStrike} win={setWin} state={state} />}
           {state === 'thirdRound' && <GameBoard addStrike={setStrike} win={setWin} state={state} />}

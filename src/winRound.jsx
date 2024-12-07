@@ -6,7 +6,7 @@ function WinRound({ state, round, setRoundButton, gameReset }) {
   );
   const resetGameBtn = (
     <button onClick={() => gameReset()} className={`winButton ${round}`}>
-      Exit
+      Replay?
     </button>
   );
 
