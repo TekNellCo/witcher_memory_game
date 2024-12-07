@@ -16,9 +16,9 @@ function GameBoard({ addStrike, win, state }) {
   if (state === 'firstRound') {
     cards = 6;
   } else if (state === 'secondRound') {
-    cards = 10;
+    cards = 8;
   } else if (state === 'thirdRound') {
-    cards = 12;
+    cards = 10;
   }
 
   const cardBackground = '/src/assets/card_background.webp'; ///default card background
@@ -81,7 +81,7 @@ function GameBoard({ addStrike, win, state }) {
   return (
     <>
       {shuffledCards.map((card, index) => (
-        <div key={index} className="cardContainer" onClick={() => handleCardClick(card, index)}>
+        <div key={index} className={`cardContainer ${state}`} onClick={() => handleCardClick(card, index)}>
           <div className={`card ${isHidden[index] ? '' : 'flipped'}`}>
             <div className="front">
               <img src={cardBackground} alt="" />

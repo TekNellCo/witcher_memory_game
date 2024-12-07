@@ -1,3 +1,18 @@
+@keyframes fadeInOut {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -42,6 +57,8 @@ body {
 }
 
 .gameContainer {
+  opacity: 0;
+  visibility: hidden;
   display: grid;
   border-radius: 14px;
   background-color: rgba(57, 57, 57, 0.299);
@@ -49,23 +66,27 @@ body {
   aspect-ratio: 1;
   width: 40%;
   transform: translate(-20%);
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 2s ease-in-out;
   &.firstRound {
     grid-template-columns: repeat(4, 1fr);
   }
   &.secondRound {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    aspect-ratio: none;
+    height: 90%;
   }
   &.thirdRound {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 .gameContainer.hidden {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
 .gameContainer.visible {
   opacity: 1;
+  visibility: visible;
 }
 
 .cardContainer {
@@ -75,6 +96,9 @@ body {
   position: relative;
   perspective: 1000px;
   margin: auto;
+  &.secondRound {
+    width: 84%;
+  }
 }
 
 .card {
@@ -172,6 +196,16 @@ body {
 }
 .loadingHeader {
   font-size: 4rem;
+  animation-name: fadeInOut;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  opacity: 1;
+  transition: 3s ease-out;
+}
+.loadingHeader.hidden {
+  opacity: 0;
+  animation: none;
 }
 .startButton {
   opacity: 1;
@@ -182,4 +216,13 @@ body {
   width: 60%;
   height: 20%;
   bottom: 5%;
+  transition: 2s ease-in;
+}
+
+.startButton.hidden {
+  opacity: 0;
+}
+
+.startButton.active {
+  opacity: 1;
 }

@@ -12,6 +12,26 @@ function App() {
   const [strike, setStrike] = useState(0);
   const [won, setWin] = useState(false);
 
+  ////checks if loading is done
+  // useEffect(() => {
+  //   function unhideStartBtn() {
+  //     setState('loadingDone');
+  //   }
+  //   window.addEventListener('load', unhideStartBtn);
+
+  //   return () => window.removeEventListener('load', unhideStartBtn);
+  // }, []);
+
+  useEffect(() => {
+    // Set the state after a 2-second delay
+    const timeoutId = setTimeout(() => {
+      setState('loadingDone');
+    }, 2000);
+
+    // Cleanup: clear the timeout if the component unmounts or if the effect is cleaned up
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   ////sets state and rounds on midRound page///setRound is only for rounds, setState switches between rounds and other states
   function setRoundButton() {
     if (round === 'firstRound') {
@@ -53,8 +73,6 @@ function App() {
     } else if (state === 'thirdRound' && strike === 26) {
       setState('loseGame');
     }
-    console.log(state);
-    console.log(strike);
   }, [strike]);
 
   /////resets the game to defaults
@@ -65,12 +83,16 @@ function App() {
     setWin(false);
   }
 
+  function gameContainerVisual() {
+    return state === 'loading' || state === 'loadingDone' ? 'hidden' : 'visible';
+  }
+
   return (
     <>
       <video className="background" autoPlay muted loop playsInline typeof="video/webm" src="src\assets\Background_desktop.webm"></video>
       <div className="pageContainer">
-        {state === 'loading' && <LoadingScreen setState={setState} />}
-        <div className={`gameContainer  ${state === 'loading' ? 'hidden' : 'visible'}    ${state}`}>
+        {(state === 'loading' || state === 'loadingDone') && <LoadingScreen setState={setState} state={state} />}
+        <div className={`gameContainer  ${gameContainerVisual()} ${state}`}>
           {state === 'firstRound' && <GameBoard addStrike={setStrike} win={setWin} state={state} />}
           {state === 'secondRound' && <GameBoard addStrike={setStrike} win={setWin} state={state} />}
           {state === 'thirdRound' && <GameBoard addStrike={setStrike} win={setWin} state={state} />}

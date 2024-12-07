@@ -1,9 +1,9 @@
-function LoadingScreen({ setState }) {
+function LoadingScreen({ setState, state }) {
   return (
     <>
       <div className="loadingContainer">
-        <h1 className="loadingHeader">Loading</h1>
-        <button onClick={() => setState('firstRound')} className="startButton">
+        <h1 className={`loadingHeader ${state === 'loadingDone' ? 'hidden' : ''}`}>Loading</h1>
+        <button onClick={() => setState('firstRound')} className={`startButton ${state === 'loading' ? 'hidden' : 'active'}`}>
           Start
         </button>
       </div>
