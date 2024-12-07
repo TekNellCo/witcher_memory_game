@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { ciriSFX, geraltSFX, trissSFX } from './sounds';
 
-function WinRound({ state, round, setRoundButton, gameReset }) {
+function WinRound({ state, round, setRoundButton, gameReset, isMuted }) {
   useEffect(() => {
     if (state === 'wonRound') {
       if (round === 'firstRound') {
-        trissSFX();
+        trissSFX(isMuted);
       } else if (round === 'secondRound') {
-        ciriSFX();
+        ciriSFX(isMuted);
       } else if (round === 'thirdRound') {
-        geraltSFX();
+        geraltSFX(isMuted);
       }
     }
   }, [state, round]);

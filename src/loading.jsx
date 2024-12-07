@@ -1,8 +1,8 @@
 import { playMusic } from './sounds';
 
-function LoadingScreen({ setState, state }) {
+function LoadingScreen({ setState, state, isMuted }) {
   function setRoundAndMusic() {
-    playMusic();
+    playMusic(isMuted);
     setState('firstRound');
   }
 

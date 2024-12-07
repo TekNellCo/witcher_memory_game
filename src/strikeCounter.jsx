@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-function StrikeCounter({ strike, round, state }) {
+function StrikeCounter({ strike, round, state, muteSounds }) {
   const strikes = strike.toString();
   let maxStrikes;
   const [visibility, setVisibility] = useState('hidden');
@@ -30,6 +30,9 @@ function StrikeCounter({ strike, round, state }) {
           </p>
         </div>
       </div>
+      <button onClick={muteSounds} className="muteButton">
+        Mute
+      </button>
     </>
   );
 }

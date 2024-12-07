@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import cardCreatorShuffle from './cards';
 import { cardFlipSFX } from './sounds';
 
-function GameBoard({ addStrike, win, state }) {
+function GameBoard({ addStrike, win, state, isMuted }) {
   // let cards;
   // if (round === 'firstRound') {
   //   cards = 6;
@@ -58,7 +58,7 @@ function GameBoard({ addStrike, win, state }) {
   }, [isFlipped, addStrike, shuffledCards]); // Triggered when isFlipped changes
 
   function handleCardClick(card, index) {
-    cardFlipSFX();
+    cardFlipSFX(isMuted);
     if (matchedCards.includes(card)) return; /////if its already in the matched cards array do nothing
     // Flip the card
     setIsHidden((prev) => prev.map((hidden, i) => (i === index ? !hidden : hidden)));

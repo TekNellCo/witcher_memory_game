@@ -5,13 +5,22 @@ import GameBoard from './gameBoard';
 import WinRound from './winRound';
 import LoseGame from './loseGame';
 import LoadingScreen from './loading';
-import { eredenSFX } from './sounds';
+import { eredenSFX, playMusic } from './sounds';
 
 function App() {
-  const [state, setState] = useState('loadingDone');
+  const [isMuted, setMuted] = useState(false);
+  const [state, setState] = useState('loading');
   const [round, setRound] = useState('firstRound');
   const [strike, setStrike] = useState(0);
   const [won, setWin] = useState(false);
+
+  function muteSounds() {
+    setMuted((previous) => {
+      const newMuteState = !previous;
+      playMusic(newMuteState); // Passes the updated mute state to playMusic to pause song
+      return newMuteState;
+    });
+  }
 
   ////checks if loading is done then triggers function to unhide start button
   useEffect(() => {
@@ -64,13 +73,13 @@ function App() {
   useEffect(() => {
     if (state === 'firstRound' && strike === 2) {
       setState('loseGame');
-      eredenSFX();
+      eredenSFX(isMuted);
     } else if (state === 'secondRound' && strike === 2) {
       setState('loseGame');
-      eredenSFX();
+      eredenSFX(isMuted);
     } else if (state === 'thirdRound' && strike === 2) {
       setState('loseGame');
-      eredenSFX();
+      eredenSFX(isMuted);
     }
   }, [strike]);
 
@@ -87,17 +96,25 @@ function App() {
     return state === 'loading' || state === 'loadingDone' ? 'hidden' : 'visible';
   }
 
+  ////combined props into an object for cleaner code
+  const repeatedProps = {
+    isMuted,
+    addStrike: setStrike,
+    win: setWin,
+    state,
+  };
+
   return (
     <>
       <video className="background" autoPlay muted loop playsInline typeof="video/webm" src="src\assets\Background_desktop.webm"></video>
       <div className="pageContainer">
-        {(state === 'loading' || state === 'loadingDone') && <LoadingScreen setState={setState} state={state} />}
-        {state == 'loading' || state == 'loadingDone' ? '' : <StrikeCounter state={state} strike={strike} round={round} />}
+        {(state === 'loading' || state === 'loadingDone') && <LoadingScreen isMuted={isMuted} setState={setState} state={state} />}
+        {state == 'loading' || state == 'loadingDone' ? '' : <StrikeCounter muteSounds={muteSounds} state={state} strike={strike} round={round} />}
         <div className={`gameContainer  ${loadingVisual()} ${state}`}>
-          {state === 'firstRound' && <GameBoard addStrike={setStrike} win={setWin} state={state} />}
-          {state === 'secondRound' && <GameBoard addStrike={setStrike} win={setWin} state={state} />}
-          {state === 'thirdRound' && <GameBoard addStrike={setStrike} win={setWin} state={state} />}
-          {state === 'wonRound' && <WinRound state={state} round={round} setRoundButton={setRoundButton} gameReset={gameReset} />}
+          {state === 'firstRound' && <GameBoard {...repeatedProps} />}
+          {state === 'secondRound' && <GameBoard {...repeatedProps} />}
+          {state === 'thirdRound' && <GameBoard {...repeatedProps} />}
+          {state === 'wonRound' && <WinRound isMuted={isMuted} state={state} round={round} setRoundButton={setRoundButton} gameReset={gameReset} />}
           {state === 'loseGame' && <LoseGame gameReset={gameReset} />}
         </div>
       </div>
