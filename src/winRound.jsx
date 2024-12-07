@@ -1,4 +1,19 @@
+import { useEffect } from 'react';
+import { ciriSFX, geraltSFX, trissSFX } from './sounds';
+
 function WinRound({ state, round, setRoundButton, gameReset }) {
+  useEffect(() => {
+    if (state === 'wonRound') {
+      if (round === 'firstRound') {
+        trissSFX();
+      } else if (round === 'secondRound') {
+        ciriSFX();
+      } else if (round === 'thirdRound') {
+        geraltSFX();
+      }
+    }
+  }, [state, round]);
+
   const nextRoundButton = (
     <button onClick={() => setRoundButton()} className={`winButton ${round}`}>
       Next

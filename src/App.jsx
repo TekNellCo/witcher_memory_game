@@ -5,6 +5,7 @@ import GameBoard from './gameBoard';
 import WinRound from './winRound';
 import LoseGame from './loseGame';
 import LoadingScreen from './loading';
+import { eredenSFX } from './sounds';
 
 function App() {
   const [state, setState] = useState('loadingDone');
@@ -61,12 +62,15 @@ function App() {
 
   /////changes number of wrong guess's you can make before losing
   useEffect(() => {
-    if (state === 'firstRound' && strike === 7) {
+    if (state === 'firstRound' && strike === 2) {
       setState('loseGame');
-    } else if (state === 'secondRound' && strike === 20) {
+      eredenSFX();
+    } else if (state === 'secondRound' && strike === 2) {
       setState('loseGame');
-    } else if (state === 'thirdRound' && strike === 26) {
+      eredenSFX();
+    } else if (state === 'thirdRound' && strike === 2) {
       setState('loseGame');
+      eredenSFX();
     }
   }, [strike]);
 
