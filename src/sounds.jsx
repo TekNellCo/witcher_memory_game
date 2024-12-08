@@ -33,48 +33,48 @@ export function playMusic(isMuted) {
 export function trissSFX(isMuted) {
   if (isMuted) return;
   const audio = new Audio('/sounds/triss.mp3');
-  audio.volume = 0.3;
+  audio.volume = 0.7;
   audio.play();
 }
 
 export function ciriSFX(isMuted) {
   if (isMuted) return;
   const audio = new Audio('/sounds/ciri.mp3');
-  audio.volume = 0.3;
+  audio.volume = 0.7;
   audio.play();
 }
 
 export function geraltSFX(isMuted) {
   if (isMuted) return;
   const audio = new Audio('/sounds/geralt.mp3');
-  audio.volume = 0.3;
+  audio.volume = 0.7;
   audio.play();
 }
 
 export function eredenSFX(isMuted) {
   if (isMuted) return;
   const audio = new Audio('/sounds/ereden.mp3');
-  audio.volume = 0.3;
+  audio.volume = 0.7;
   audio.play();
 }
 
 export function cardFlipSFX(isMuted) {
   if (isMuted) return;
   const audio = new Audio('/sounds/cardflip.mp3');
-  audio.volume = 0.3;
+  audio.volume = 0.7;
   audio.play();
 }
 
 export function deadBtnSFX(isMuted) {
   if (isMuted) return;
   const audio = new Audio('/sounds/deadbutton.mp3');
-  audio.volume = 0.3;
+  audio.volume = 0.7;
   audio.play();
 }
 
 export function winBtnSFX(isMuted) {
   if (isMuted) return;
   const audio = new Audio('/sounds/winbutton.mp3');
-  audio.volume = 0.3;
+  audio.volume = 0.7;
   audio.play();
 }
