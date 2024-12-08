@@ -6,7 +6,6 @@ import WinRound from './winRound';
 import LoseGame from './loseGame';
 import LoadingScreen from './loading';
 import { eredenSFX, playMusic } from './sounds';
-import backgroundVideo from './assets/Background_desktop.webm';
 
 function App() {
   const [isMuted, setMuted] = useState(false);
@@ -106,7 +105,7 @@ function App() {
 
   return (
     <>
-      <video className="background" autoPlay muted loop playsInline typeof="video/webm" src="../public/Background_desktop.webm"></video>
+      <video className="background" autoPlay muted loop playsInline typeof="video/webm" src="/Background_desktop.webm"></video>
       <div className="pageContainer">
         {(state === 'loading' || state === 'loadingDone') && <LoadingScreen isMuted={isMuted} setState={setState} state={state} />}
         {state == 'loading' || state == 'loadingDone' ? '' : <StrikeCounter muteSounds={muteSounds} state={state} strike={strike} round={round} />}

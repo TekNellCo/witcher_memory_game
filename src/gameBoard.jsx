@@ -21,7 +21,7 @@ function GameBoard({ addStrike, win, state, isMuted }) {
     cards = 10;
   }
 
-  const cardBackground = '../public/card_background.webp'; ///default card background
+  const cardBackground = '/card_background.webp'; ///default card background
   const [shuffledCards, setShuffledCards] = useState([]); ///stored shuffled cards
   const [isHidden, setIsHidden] = useState([]); ///tracks if cards are hidden or not
   const [matchedCards, setMatchedCards] = useState([]);
