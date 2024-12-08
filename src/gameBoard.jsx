@@ -26,6 +26,7 @@ function GameBoard({ addStrike, win, state, isMuted }) {
   const [isHidden, setIsHidden] = useState([]); ///tracks if cards are hidden or not
   const [matchedCards, setMatchedCards] = useState([]);
   const [isFlipped, setFlippedCards] = useState([]);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   /////pulls shuffled cards from cards.jsx
   useEffect(() => {
@@ -38,8 +39,9 @@ function GameBoard({ addStrike, win, state, isMuted }) {
   }, [state, cards]);
 
   useEffect(() => {
-    if (isFlipped.length === 2) {
+    if (isFlipped.length === 2 && !isProcessing) {
       const [firstCard, secondCard] = isFlipped; ///if 2 cards in flipped array, name them
+      setIsProcessing(true);
       ////compares both cards
       if (firstCard.name !== secondCard.name) {
         addStrike((prevStrike) => prevStrike + 1); ///adds a strike if they don't match + pushes it to App.js
@@ -48,10 +50,12 @@ function GameBoard({ addStrike, win, state, isMuted }) {
           setIsHidden((hiddenValue) =>
             hiddenValue.map((hidden, i) => (shuffledCards[i] === firstCard || shuffledCards[i] === secondCard ? true : hidden))
           );
+          setIsProcessing(false);
         }, 800);
       } else {
         ///cards match so add them to the array
         setMatchedCards((currentMatched) => [...currentMatched, firstCard, secondCard]);
+        setIsProcessing(false);
       }
       setFlippedCards([]); // Reset flipped cards after checking
     }
@@ -59,7 +63,7 @@ function GameBoard({ addStrike, win, state, isMuted }) {
 
   function handleCardClick(card, index) {
     cardFlipSFX(isMuted);
-    if (matchedCards.includes(card)) return; /////if its already in the matched cards array do nothing
+    if (isProcessing || matchedCards.includes(card)) return; /////if its already in the matched cards array do nothing
     // Flip the card
     setIsHidden((prev) => prev.map((hidden, i) => (i === index ? !hidden : hidden)));
     setFlippedCards((prevFlipped) => {
