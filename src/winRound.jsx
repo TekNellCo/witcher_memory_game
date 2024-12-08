@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { ciriSFX, geraltSFX, trissSFX } from './sounds';
 import { winBtnSFX } from './sounds';
+import triss from './assets/win/Triss.webm';
+import ciri from './assets/win/Ciri.webm';
+import geralt from './assets/win/Geralt.webm';
 
 function WinRound({ state, round, setRoundButton, gameReset, isMuted }) {
   useEffect(() => {
@@ -38,9 +41,9 @@ function WinRound({ state, round, setRoundButton, gameReset, isMuted }) {
     <>
       <div className="betweenRoundDiv">
         {round === 'thirdRound' ? resetGameBtn : nextRoundButton}
-        {round === 'firstRound' && <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src="/win/Triss.webm"></video>}
-        {round === 'secondRound' && <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src="/win/Ciri.webm"></video>}
-        {round === 'thirdRound' && <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src="/win/Geralt.webm"></video>}
+        {round === 'firstRound' && <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src={triss}></video>}
+        {round === 'secondRound' && <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src={ciri}></video>}
+        {round === 'thirdRound' && <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src={geralt}></video>}
       </div>
     </>
   );

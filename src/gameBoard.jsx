@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import cardCreatorShuffle from './cards';
 import { cardFlipSFX } from './sounds';
+import cardBackgroundImg from './assets/card_background.webp';
 
 function GameBoard({ addStrike, win, state, isMuted }) {
   // let cards;
@@ -21,7 +22,7 @@ function GameBoard({ addStrike, win, state, isMuted }) {
     cards = 10;
   }
 
-  const cardBackground = '/card_background.webp'; ///default card background
+  const cardBackground = cardBackgroundImg; ///default card background
   const [shuffledCards, setShuffledCards] = useState([]); ///stored shuffled cards
   const [isHidden, setIsHidden] = useState([]); ///tracks if cards are hidden or not
   const [matchedCards, setMatchedCards] = useState([]);

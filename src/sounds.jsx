@@ -1,4 +1,13 @@
 let currentAudio = null;
+import cardFlip from './assets/sounds/cardflip.mp3';
+import ciri from './assets/sounds/ciri.mp3';
+import mainSoundTrack from './assets/sounds/Combined SoundTrack.mp3';
+import deadButton from './assets/sounds/deadbutton.mp3';
+import ereden from './assets/sounds/ereden.mp3';
+import geralt from './assets/sounds/geralt.mp3';
+import triss from './assets/sounds/triss.mp3';
+import winButton from './assets/sounds/winbutton.mp3';
+import loopAudio from './assets/sounds/witcherMusic.mp3';
 
 export function playMusic(isMuted) {
   console.log(isMuted, 'is muted');
@@ -13,11 +22,11 @@ export function playMusic(isMuted) {
         currentAudio.play();
       }
     } else {
-      currentAudio = new Audio('/sounds/Combined SoundTrack.mp3');
+      currentAudio = new Audio(mainSoundTrack);
       currentAudio.play();
 
       currentAudio.addEventListener('ended', () => {
-        const nextAudio = new Audio('/sounds/witcherMusic.mp3');
+        const nextAudio = new Audio(loopAudio);
         nextAudio.volume = 0.3;
         currentAudio = nextAudio;
         nextAudio.play();
@@ -32,49 +41,49 @@ export function playMusic(isMuted) {
 
 export function trissSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('/sounds/triss.mp3');
-  audio.volume = 0.7;
+  const audio = new Audio(triss);
+  audio.volume = 0.8;
   audio.play();
 }
 
 export function ciriSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('/sounds/ciri.mp3');
-  audio.volume = 0.7;
+  const audio = new Audio(ciri);
+  audio.volume = 0.8;
   audio.play();
 }
 
 export function geraltSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('/sounds/geralt.mp3');
-  audio.volume = 0.7;
+  const audio = new Audio(geralt);
+  audio.volume = 0.8;
   audio.play();
 }
 
 export function eredenSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('/sounds/ereden.mp3');
-  audio.volume = 0.7;
+  const audio = new Audio(ereden);
+  audio.volume = 0.8;
   audio.play();
 }
 
 export function cardFlipSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('/sounds/cardflip.mp3');
+  const audio = new Audio(cardFlip);
   audio.volume = 0.7;
   audio.play();
 }
 
 export function deadBtnSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('/sounds/deadbutton.mp3');
+  const audio = new Audio(deadButton);
   audio.volume = 0.7;
   audio.play();
 }
 
 export function winBtnSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('/sounds/winbutton.mp3');
+  const audio = new Audio(winButton);
   audio.volume = 0.7;
   audio.play();
 }
