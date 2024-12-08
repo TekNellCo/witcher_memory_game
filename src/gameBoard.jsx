@@ -14,9 +14,9 @@ function GameBoard({ addStrike, win, state, isMuted }) {
 
   let cards;
   if (state === 'firstRound') {
-    cards = 2;
+    cards = 6;
   } else if (state === 'secondRound') {
-    cards = 2;
+    cards = 8;
   } else if (state === 'thirdRound') {
     cards = 10;
   }

@@ -57,6 +57,9 @@ body {
 }
 
 .gameContainer {
+  background-image: url(./assets/gameboardBackground.webp);
+  background-position: center;
+  background-size: contain;
   opacity: 0;
   visibility: hidden;
   display: grid;
@@ -71,6 +74,8 @@ body {
     grid-template-columns: repeat(4, 1fr);
   }
   &.secondRound {
+    background-size: cover;
+    background-position: center;
     grid-template-columns: repeat(4, 1fr);
     aspect-ratio: none;
     height: 90%;
@@ -98,6 +103,7 @@ body {
   margin: auto;
   &.secondRound {
     width: 84%;
+    height: 98%;
   }
 }
 
@@ -228,6 +234,7 @@ body {
 }
 
 .strikeChances {
+  border-radius: 8px;
   opacity: 0;
   visibility: hidden;
   border: 2px double white;
@@ -258,6 +265,9 @@ body {
 }
 
 .muteButton {
+  border-radius: 50%;
+  border: 2px double;
+  background-color: rgba(0, 0, 0, 0.24);
   bottom: 5%;
   left: 3%;
   position: absolute;
@@ -265,4 +275,48 @@ body {
   height: 4%;
   width: auto;
   /* transform: translate(-730%, 100%); */
+  &:active {
+    background-color: white;
+    color: black;
+    border: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .background {
+    object-position: 70%;
+  }
+  .loadingContainer {
+    transform: translate(196%);
+  }
+  .startButton {
+    width: 15rem;
+  }
+  .gameContainer {
+    width: 99%;
+    transform: translate(0);
+    &.secondRound {
+      transform: translate(0%, -5%);
+    }
+  }
+
+  .strikeChances {
+    transform: translate(0%, 640%);
+    width: 20%;
+    height: 7%;
+  }
+  .muteButton {
+    bottom: 2%;
+  }
+}
+
+@media (max-width: 500px) {
+  .muteButton {
+    height: 7%;
+  }
+  .strikeChances {
+    width: 28%;
+    height: 8%;
+    transform: translate(0%, 565%);
+  }
 }

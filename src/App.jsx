@@ -9,7 +9,7 @@ import { eredenSFX, playMusic } from './sounds';
 
 function App() {
   const [isMuted, setMuted] = useState(false);
-  const [state, setState] = useState('loading');
+  const [state, setState] = useState('loadingDone');
   const [round, setRound] = useState('firstRound');
   const [strike, setStrike] = useState(0);
   const [won, setWin] = useState(false);
@@ -28,7 +28,6 @@ function App() {
       setState('loadingDone');
     }
     window.addEventListener('load', unhideStartBtn);
-
     return () => window.removeEventListener('load', unhideStartBtn);
   }, []);
 
@@ -71,13 +70,13 @@ function App() {
 
   /////changes number of wrong guess's you can make before losing
   useEffect(() => {
-    if (state === 'firstRound' && strike === 2) {
+    if (state === 'firstRound' && strike === 7) {
       setState('loseGame');
       eredenSFX(isMuted);
-    } else if (state === 'secondRound' && strike === 2) {
+    } else if (state === 'secondRound' && strike === 16) {
       setState('loseGame');
       eredenSFX(isMuted);
-    } else if (state === 'thirdRound' && strike === 2) {
+    } else if (state === 'thirdRound' && strike === 20) {
       setState('loseGame');
       eredenSFX(isMuted);
     }
@@ -115,7 +114,7 @@ function App() {
           {state === 'secondRound' && <GameBoard {...repeatedProps} />}
           {state === 'thirdRound' && <GameBoard {...repeatedProps} />}
           {state === 'wonRound' && <WinRound isMuted={isMuted} state={state} round={round} setRoundButton={setRoundButton} gameReset={gameReset} />}
-          {state === 'loseGame' && <LoseGame gameReset={gameReset} />}
+          {state === 'loseGame' && <LoseGame isMuted={isMuted} gameReset={gameReset} />}
         </div>
       </div>
     </>

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { ciriSFX, geraltSFX, trissSFX } from './sounds';
+import { winBtnSFX } from './sounds';
 
 function WinRound({ state, round, setRoundButton, gameReset, isMuted }) {
   useEffect(() => {
@@ -15,12 +16,20 @@ function WinRound({ state, round, setRoundButton, gameReset, isMuted }) {
   }, [state, round]);
 
   const nextRoundButton = (
-    <button onClick={() => setRoundButton()} className={`winButton ${round}`}>
+    <button
+      onClick={() => {
+        setRoundButton(), winBtnSFX(isMuted);
+      }}
+      className={`winButton ${round}`}>
       Next
     </button>
   );
   const resetGameBtn = (
-    <button onClick={() => gameReset()} className={`winButton ${round}`}>
+    <button
+      onClick={() => {
+        gameReset(), winBtnSFX(isMuted);
+      }}
+      className={`winButton ${round}`}>
       Replay?
     </button>
   );
