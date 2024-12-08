@@ -37,14 +37,14 @@
 }
 html,
 body {
-  height: 100svh;
+  height: 100dvh;
   width: 100%;
 }
 .background {
   object-fit: cover;
   position: absolute;
   z-index: -1;
-  height: 100%;
+  height: 100dvh;
   width: 100%;
 }
 .pageContainer {
@@ -52,7 +52,7 @@ body {
   justify-content: center;
   align-items: center;
   flex: 1;
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
 }
 
@@ -95,6 +95,9 @@ body {
 }
 
 .cardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   width: 84%;
   aspect-ratio: 0.7;
@@ -102,8 +105,8 @@ body {
   perspective: 1000px;
   margin: auto;
   &.secondRound {
-    width: 84%;
-    height: 98%;
+    height: 96%;
+    /* width: 84%; */
   }
 }
 
@@ -311,12 +314,38 @@ body {
 }
 
 @media (max-width: 500px) {
-  .muteButton {
-    height: 7%;
+  .gameContainer {
+    place-items: center;
+    max-height: 70%;
   }
+  .startButton {
+    height: 8%;
+    width: 60%;
+  }
+  .winButton {
+    height: 10%;
+    width: 25%;
+  }
+  .loadingContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate(0%);
+  }
+  .loseGameBtn {
+    height: 12%;
+  }
+
   .strikeChances {
     width: 28%;
     height: 8%;
-    transform: translate(0%, 565%);
+    transform: translate(0%, 505%);
+  }
+  .muteButton {
+    top: 2%;
+    width: 60px;
+    height: 60px;
   }
 }

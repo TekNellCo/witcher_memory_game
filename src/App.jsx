@@ -9,8 +9,8 @@ import { eredenSFX, playMusic } from './sounds';
 
 function App() {
   const [isMuted, setMuted] = useState(false);
-  const [state, setState] = useState('loadingDone');
-  const [round, setRound] = useState('firstRound');
+  const [state, setState] = useState('wonRound');
+  const [round, setRound] = useState('thirdRound');
   const [strike, setStrike] = useState(0);
   const [won, setWin] = useState(false);
 
