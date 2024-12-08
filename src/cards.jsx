@@ -1,6 +1,6 @@
 ///////////imports images dynamically
 function cardCreatorShuffle(cardsToShuffle) {
-  const images = import.meta.glob('./assets/ConvertedCards/*.webp', { eager: true });
+  const images = import.meta.glob('../public/ConvertedCards/*.webp', { eager: true });
 
   const cards = Object.keys(images).map((path) => ({
     name: path.split('/').pop().replace('.webp', ''), // Extracts filename and removes extension
