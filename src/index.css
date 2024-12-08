@@ -57,6 +57,7 @@ body {
 }
 
 .gameContainer {
+  background-image: url(/public/gameboardBackground.webp);
   background-position: center;
   background-size: contain;
   opacity: 0;
