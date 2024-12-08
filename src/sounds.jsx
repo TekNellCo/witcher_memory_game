@@ -13,11 +13,11 @@ export function playMusic(isMuted) {
         currentAudio.play();
       }
     } else {
-      currentAudio = new Audio('src/assets/sounds/Combined SoundTrack.mp3');
+      currentAudio = new Audio('../public/sounds/Combined SoundTrack.mp3');
       currentAudio.play();
 
       currentAudio.addEventListener('ended', () => {
-        const nextAudio = new Audio('src/assets/sounds/witcherMusic.mp3');
+        const nextAudio = new Audio('../public/sounds/witcherMusic.mp3');
         nextAudio.volume = 0.3;
         currentAudio = nextAudio;
         nextAudio.play();
@@ -32,49 +32,49 @@ export function playMusic(isMuted) {
 
 export function trissSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('src/assets/sounds/triss.mp3');
+  const audio = new Audio('../public/sounds/triss.mp3');
   audio.volume = 0.3;
   audio.play();
 }
 
 export function ciriSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('src/assets/sounds/ciri.mp3');
+  const audio = new Audio('../public/sounds/ciri.mp3');
   audio.volume = 0.3;
   audio.play();
 }
 
 export function geraltSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('src/assets/sounds/geralt.mp3');
+  const audio = new Audio('../public/sounds/geralt.mp3');
   audio.volume = 0.3;
   audio.play();
 }
 
 export function eredenSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('src/assets/sounds/ereden.mp3');
+  const audio = new Audio('../public/sounds/ereden.mp3');
   audio.volume = 0.3;
   audio.play();
 }
 
 export function cardFlipSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('src/assets/sounds/cardflip.mp3');
+  const audio = new Audio('../public/sounds/cardflip.mp3');
   audio.volume = 0.3;
   audio.play();
 }
 
 export function deadBtnSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('src/assets/sounds/deadbutton.mp3');
+  const audio = new Audio('../public/sounds/deadbutton.mp3');
   audio.volume = 0.3;
   audio.play();
 }
 
 export function winBtnSFX(isMuted) {
   if (isMuted) return;
-  const audio = new Audio('src/assets/sounds/winbutton.mp3');
+  const audio = new Audio('../public/sounds/winbutton.mp3');
   audio.volume = 0.3;
   audio.play();
 }

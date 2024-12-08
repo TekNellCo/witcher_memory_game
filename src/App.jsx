@@ -106,7 +106,7 @@ function App() {
 
   return (
     <>
-      <video className="background" autoPlay muted loop playsInline typeof="video/webm" src={backgroundVideo}></video>
+      <video className="background" autoPlay muted loop playsInline typeof="video/webm" src="../public/Background_desktop.webm"></video>
       <div className="pageContainer">
         {(state === 'loading' || state === 'loadingDone') && <LoadingScreen isMuted={isMuted} setState={setState} state={state} />}
         {state == 'loading' || state == 'loadingDone' ? '' : <StrikeCounter muteSounds={muteSounds} state={state} strike={strike} round={round} />}
