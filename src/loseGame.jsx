@@ -11,7 +11,7 @@ function LoseGame({ gameReset, isMuted }) {
         className="loseGameBtn">
         Die
       </button>
-      <video className="loseVideo" autoPlay muted loop playsInline typeof="video/mp4" src="..\public\loss\ereden.mp4"></video>
+      <video className="loseVideo" autoPlay muted loop playsInline typeof="video/mp4" src="/loss/ereden.mp4"></video>
     </>
   );
 }

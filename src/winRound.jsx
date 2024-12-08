@@ -38,15 +38,9 @@ function WinRound({ state, round, setRoundButton, gameReset, isMuted }) {
     <>
       <div className="betweenRoundDiv">
         {round === 'thirdRound' ? resetGameBtn : nextRoundButton}
-        {round === 'firstRound' && (
-          <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src="..\public\win\Triss.webm"></video>
-        )}
-        {round === 'secondRound' && (
-          <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src="..\public\win\Ciri.webm"></video>
-        )}
-        {round === 'thirdRound' && (
-          <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src="..\public\win\Geralt.webm"></video>
-        )}
+        {round === 'firstRound' && <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src="/win/Triss.webm"></video>}
+        {round === 'secondRound' && <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src="/win/Ciri.webm"></video>}
+        {round === 'thirdRound' && <video className="winVideo" autoPlay muted loop playsInline typeof="video/webm" src="/win/Geralt.webm"></video>}
       </div>
     </>
   );
