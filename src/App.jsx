@@ -24,13 +24,23 @@ function App() {
 
   ////checks if loading is done then triggers function to unhide start button
   useEffect(() => {
-    function unhideStartBtn() {
+    // If the page is already loaded, set the state immediately
+    if (document.readyState === 'complete') {
       setState('loadingDone');
-    }
-    window.addEventListener('load', unhideStartBtn);
-    return () => window.removeEventListener('load', unhideStartBtn);
-  }, []);
+    } else {
+      // Otherwise, listen for the load event
+      const handleLoad = () => {
+        setState('loadingDone');
+      };
 
+      window.addEventListener('load', handleLoad);
+
+      // Cleanup the event listener when the component is unmounted
+      return () => {
+        window.removeEventListener('load', handleLoad);
+      };
+    }
+  }, []);
   //////used for testing
   // useEffect(() => {
   //   const timeoutId = setTimeout(() => {
