@@ -27,7 +27,7 @@ export function playMusic(isMuted) {
 
       currentAudio.addEventListener('ended', () => {
         const nextAudio = new Audio(loopAudio);
-        nextAudio.volume = 0.3;
+        nextAudio.volume = 0.7;
         currentAudio = nextAudio;
         nextAudio.play();
 
@@ -70,7 +70,7 @@ export function eredenSFX(isMuted) {
 export function cardFlipSFX(isMuted) {
   if (isMuted) return;
   const audio = new Audio(cardFlip);
-  audio.volume = 0.7;
+  audio.volume = 0.2;
   audio.play();
 }
 
