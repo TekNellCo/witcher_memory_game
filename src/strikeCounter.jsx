@@ -14,9 +14,9 @@ function StrikeCounter({ strike, round, state, muteSounds }) {
   if (round === 'firstRound') {
     maxStrikes = '7';
   } else if (round === 'secondRound') {
-    maxStrikes = '16';
+    maxStrikes = '10';
   } else if (round === 'thirdRound') {
-    maxStrikes = '20';
+    maxStrikes = '15';
   } else {
     maxStrikes = '0';
   }
