@@ -87,7 +87,7 @@ function App() {
     } else if (state === 'secondRound' && strike === 10) {
       setState('loseGame');
       eredenSFX(isMuted);
-    } else if (state === 'thirdRound' && strike === 15) {
+    } else if (state === 'thirdRound' && strike === 13) {
       setState('loseGame');
       eredenSFX(isMuted);
     }
